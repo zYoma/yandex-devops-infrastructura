@@ -1,0 +1,3 @@
+0 * * * * /etc/cron.daily/logrotate
+1 * * * * rsync -azvh user-backup@http://std-017-03.praktikum-services.tech:/home/jarservice/sausage-store.jar user-backup@51.250.103.79:/opt/backup/$(date +"%H-%m-%d-%Y")/ > /o
+
