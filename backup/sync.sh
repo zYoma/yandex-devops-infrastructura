@@ -1,0 +1,2 @@
+find /opt/backup -ctime +1 -exec rm -rf {} \;
+rsync -azvh -e "ssh -i /home/user-backup/key" student@std-017-03.praktikum-services.tech:/home/jarservice/sausage-store.jar /opt/backup/sausage-store-backend-$(date +"%d-%m-%Y-%H").jar
