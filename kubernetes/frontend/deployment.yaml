@@ -42,3 +42,5 @@ spec:
             items:
               - key: default
                 path: default
+      imagePullSecrets:
+        - name: docker-config-secret
