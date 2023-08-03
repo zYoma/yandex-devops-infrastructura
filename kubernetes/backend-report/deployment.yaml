@@ -23,7 +23,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: PORT
-              value: 8081
+              value: "8081"
             - name: DB
               valueFrom:
                 secretKeyRef:
