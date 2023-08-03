@@ -27,7 +27,7 @@ spec:
             - name: DB
               valueFrom:
                 secretKeyRef:
-                  name: mongo_uri
+                  name: mongo
                   key: dns
           ports:
             - name: backend-report
