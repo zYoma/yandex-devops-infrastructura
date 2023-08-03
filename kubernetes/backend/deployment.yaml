@@ -23,7 +23,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: VAULT_HOST
-              value: http://std-017-03.praktikum-services.tech
+              value: 51.250.73.7
             - name: VAULT_TOKEN
               valueFrom:
                 secretKeyRef:

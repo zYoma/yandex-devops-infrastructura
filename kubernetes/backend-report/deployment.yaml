@@ -22,13 +22,13 @@ spec:
           image: gitlab.praktikum-services.ru:5050/std-017-003/sausage-store/sausage-backend-report:latest
           imagePullPolicy: IfNotPresent
           env:
-            - name: VAULT_HOST
-              value: 51.250.73.7
-            - name: VAULT_TOKEN
+            - name: PORT
+              value: 8081
+            - name: DB
               valueFrom:
                 secretKeyRef:
-                  name: vault
-                  key: vault_token
+                  name: mongo_uri
+                  key: dns
           ports:
             - name: backend-report
               containerPort: 8081
