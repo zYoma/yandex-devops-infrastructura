@@ -4,18 +4,18 @@ kind: Deployment
 metadata:
   name: backend-report
   labels:
-    app: ackend-report
+    app: backend-report
 spec:
   replicas: 1
   strategy:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: ackend-report
+      app: backend-report
   template:
     metadata:
       labels:
-        app: ackend-report
+        app: backend-report
     spec:
       containers:
         - name: backend
@@ -23,15 +23,15 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: VAULT_HOST
-              value: http://std-017-03.praktikum-services.tech
+              value: 51.250.73.7
             - name: VAULT_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: vault
                   key: vault_token
           ports:
-            - name: ackend-report
-              containerPort: 8080
+            - name: backend-report
+              containerPort: 8081
           livenessProbe:
             httpGet:
               path: /health
