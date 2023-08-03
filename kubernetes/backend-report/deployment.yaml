@@ -18,7 +18,7 @@ spec:
         app: backend-report
     spec:
       containers:
-        - name: backend
+        - name: backend-report
           image: gitlab.praktikum-services.ru:5050/std-017-003/sausage-store/sausage-backend-report:latest
           imagePullPolicy: IfNotPresent
           env:
