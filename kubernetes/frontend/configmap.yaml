@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: sausagestore-configmapf
+  name: sausagestore-configmap
 data:
   sausagestore.conf: |
     server {
