@@ -41,6 +41,6 @@ spec:
             name: nginx-conf
             items:
               - key: default.conf
-                path: default.conf
+                path: keys
       imagePullSecrets:
         - name: docker-config-secret
