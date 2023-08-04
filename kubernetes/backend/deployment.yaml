@@ -27,7 +27,10 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME
               value: "std-017-003"
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "Testusr1234"
+              valueFrom:
+                secretKeyRef:
+                  name: spring-data-db-password
+                  key: psw
             - name: SPRING_DATA_MONGODB_URI
               valueFrom:
                 secretKeyRef:
