@@ -22,13 +22,20 @@ spec:
           image: gitlab.praktikum-services.ru:5050/std-017-003/sausage-store/sausage-backend:latest
           imagePullPolicy: IfNotPresent
           env:
-            - name: VAULT_HOST
+            - name: SPRING_DATASOURCE_URL
               value: 51.250.73.7
-            - name: VAULT_TOKEN
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "std-017-003"
+            - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: vault
-                  key: vault_token
+                  name: spring-data-db-password
+                  key: psw
+            - name: SPRING_DATA_MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: spring-data-mongo-uri
+                  key: dns
           ports:
             - name: backend
               containerPort: 8080
