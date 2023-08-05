@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-   name: nginx
+   name: frontend
    labels:
-     app: nginx
+     app: frontend
 spec:
   type: ClusterIP
   ports:
