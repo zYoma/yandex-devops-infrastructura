@@ -11,7 +11,7 @@ deploy:
   before_script:
     - mkdir -p ~/.kube
     - chmod 700 ~/.kube
-    - echo "$KUBE_CONFIG" > ~/.kube/config
+    - cat "$KUBE_CONFIG" >> ~/.kube/config
     - chmod 644 ~/.kube/config
   script:
     - kubectl apply -f kubernetes/backend
