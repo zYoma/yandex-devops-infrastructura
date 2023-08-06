@@ -23,7 +23,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://rc1b-3csxm1wq40hdemwq.mdb.yandexcloud.net:6432/std-017-003"
+              value: "jdbc:postgresql://10.129.0.42:6432/std-017-003"
             - name: SPRING_DATASOURCE_USERNAME
               value: "std-017-003"
             - name: SPRING_DATASOURCE_PASSWORD
