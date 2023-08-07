@@ -25,6 +25,12 @@ spec:
         - name: backend
           image: gitlab.praktikum-services.ru:5050/std-017-003/sausage-store/sausage-backend:latest
           imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: 1Gi
+            requests:
+              cpu: "10"
+              memory: 1Gi
           env:
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:postgresql://rc1b-3csxm1wq40hdemwq.mdb.yandexcloud.net:6432/std-017-003"

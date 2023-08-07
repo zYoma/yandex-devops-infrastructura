@@ -22,6 +22,12 @@ spec:
         - name: backend-report
           image: gitlab.praktikum-services.ru:5050/std-017-003/sausage-store/sausage-backend-report:latest
           imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: 1Gi
+            requests:
+              cpu: "10"
+              memory: 1Gi
           env:
             - name: PORT
               value: "8081"
