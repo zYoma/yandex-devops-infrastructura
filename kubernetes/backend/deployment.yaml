@@ -1,5 +1,5 @@
 ---
-apiVersion: apps/v1
+apiVersion: autoscaling.k8s.io/v1
 kind: Deployment
 metadata:
   name: backend
@@ -7,8 +7,25 @@ metadata:
     app: backend
 spec:
   replicas: 1
+  revisionHistoryLimit: 15
   strategy:
     type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 20%
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+      - containerName: "*"
+        minAllowed:
+          cpu: 0m
+          memory: 0Mi
+        maxAllowed:
+          cpu: 1
+          memory: 500Mi
+        controlledResources: [ "cpu", "memory" ]
+        controlledValues: RequestsAndLimits
   selector:
     matchLabels:
       app: backend
