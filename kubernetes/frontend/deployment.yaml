@@ -19,7 +19,7 @@ spec:
         app: frontend
     spec:
       nodeSelector:
-        application: front
+        app: frontend
       containers:
         - name: frontend
           image: gitlab.praktikum-services.ru:5050/std-017-003/sausage-store/sausage-frontend:latest
