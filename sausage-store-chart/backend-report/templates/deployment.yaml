@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+    app.kubernetes.io/managed-by: helm
+spec:
+  replicas: {{ .Values.replicasCount }}
+  revisionHistoryLimit: 15
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+        - name: backend-report
+          image: {{ .Values.image }}
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: {{ .Values.memoryLimits }}
+            requests:
+              cpu: {{ .Values.cpuRequests }}
+              memory: {{ .Values.memoryRequests }}
+          env:
+            - name: PORT
+              value: {{ .Values.port }}
+            - name: DB
+              valueFrom:
+                secretKeyRef:
+                  name: mongo
+                  key: dns
+          ports:
+            - name: {{ .Values.name }}
+              containerPort: 8081
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8081
+            initialDelaySeconds: 15
+            periodSeconds: 30
+            timeoutSeconds: 1
+            failureThreshold: 6
+      imagePullSecrets:
+        - name: docker-config-secret
