@@ -31,7 +31,7 @@ spec:
               memory: {{ .Values.memoryRequests }}
           env:
             - name: PORT
-              value: {{ .Values.port }}
+              value: "8081"
             - name: DB
               valueFrom:
                 secretKeyRef:
