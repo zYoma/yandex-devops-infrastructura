@@ -22,7 +22,7 @@ spec:
       nodeSelector:
         app: frontend
       containers:
-        - name: frontend
+        - name: {{ .Values.name }}
           image: {{ .Values.image }}
           imagePullPolicy: IfNotPresent
           ports:
