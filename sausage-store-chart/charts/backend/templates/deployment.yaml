@@ -1,0 +1,62 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+    app.kubernetes.io/managed-by: helm
+spec:
+  replicas: {{ .Values.replicasCount }}
+  revisionHistoryLimit: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 20%
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+        - name: backend
+          image: {{ .Values.image }}
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: {{ .Values.memoryLimits }}
+            requests:
+              cpu: {{ .Values.cpuRequests }}
+              memory: {{ .Values.memoryRequests }}
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: {{ .Values.dbUrl }}
+            - name: SPRING_DATASOURCE_USERNAME
+              value: {{ .Values.dbUser }}
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: spring-data-db-password
+                  key: psw
+            - name: SPRING_DATA_MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: spring-data-mongo-uri
+                  key: dns
+          ports:
+            - name: {{ .Values.name }}
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 30
+            timeoutSeconds: 1
+            failureThreshold: 6
+      imagePullSecrets:
+        - name: docker-config-secret

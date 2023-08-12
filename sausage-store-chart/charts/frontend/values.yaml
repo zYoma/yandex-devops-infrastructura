@@ -1,0 +1,5 @@
+
+name: frontend
+image: gitlab.praktikum-services.ru:5050/std-017-003/sausage-store/sausage-frontend:latest
+replicasCount: 1
+ingressUrl: "zimin-nikolay-13.k8s.praktikum-services.tech"
