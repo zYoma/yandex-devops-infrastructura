@@ -1,0 +1,24 @@
+frontend:
+  name: frontend
+  image: gitlab.praktikum-services.ru:5050/std-017-003/sausage-store/sausage-frontend:latest
+  replicasCount: 1
+  ingressUrl: "zimin-nikolay-13.k8s.praktikum-services.tech"
+
+backend:
+  name: backend
+  image: gitlab.praktikum-services.ru:5050/std-017-003/sausage-store/sausage-backend:latest
+  replicasCount: 1
+  memoryLimits: 1Gi
+  memoryRequests: "128Mi"
+  cpuRequests: "250m"
+  dbUrl: "jdbc:postgresql://rc1b-3csxm1wq40hdemwq.mdb.yandexcloud.net:6432/std-017-003"
+  dbUser: "std-017-003"
+
+backendReport:
+  name: backend-report
+  image: gitlab.praktikum-services.ru:5050/std-017-003/sausage-store/sausage-backend-report:latest
+  replicasCount: 1
+  memoryLimits: 1Gi
+  memoryRequests: "128Mi"
+  cpuRequests: "250m"
+  port: "8081"

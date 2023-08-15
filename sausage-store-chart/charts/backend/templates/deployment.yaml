@@ -2,12 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.name }}
+  name: {{ .Values.backend.name }}
   labels:
-    app: {{ .Values.name }}
+    app: {{ .Values.backend.name }}
     app.kubernetes.io/managed-by: helm
 spec:
-  replicas: {{ .Values.replicasCount }}
+  replicas: {{ .Values.backend.replicasCount }}
   revisionHistoryLimit: 15
   strategy:
     type: RollingUpdate
@@ -16,27 +16,27 @@ spec:
       maxSurge: 20%
   selector:
     matchLabels:
-      app: {{ .Values.name }}
+      app: {{ .Values.backend.name }}
   template:
     metadata:
       labels:
-        app: {{ .Values.name }}
+        app: {{ .Values.backend.name }}
     spec:
       containers:
         - name: backend
-          image: {{ .Values.image }}
+          image: {{ .Values.backend.image }}
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              memory: {{ .Values.memoryLimits }}
+              memory: {{ .Values.backend.memoryLimits }}
             requests:
-              cpu: {{ .Values.cpuRequests }}
-              memory: {{ .Values.memoryRequests }}
+              cpu: {{ .Values.backend.cpuRequests }}
+              memory: {{ .Values.backend.memoryRequests }}
           env:
             - name: SPRING_DATASOURCE_URL
-              value: {{ .Values.dbUrl }}
+              value: {{ .Values.backend.dbUrl }}
             - name: SPRING_DATASOURCE_USERNAME
-              value: {{ .Values.dbUser }}
+              value: {{ .Values.backend.dbUser }}
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -48,7 +48,7 @@ spec:
                   name: spring-data-mongo-uri
                   key: dns
           ports:
-            - name: {{ .Values.name }}
+            - name: {{ .Values.backend.name }}
               containerPort: 8080
           livenessProbe:
             httpGet:
