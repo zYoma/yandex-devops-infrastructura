@@ -6,4 +6,4 @@ backendReport:
   memoryRequests: "128Mi"
   cpuRequests: "250m"
   port: "8081"
-  mongoURI: "mongodb://std-017-003:Testusr1234@rc1c-bifx7bbe3dd9ci60.mdb.yandexcloud.net:27018/std-017-003?tlsAllowInvalidCertificates=true"
+  mongoURI: "mongodb://std-017-003:Testusr1234@rc1c-bifx7bbe3dd9ci60.mdb.yandexcloud.net:27018/std-017-003?tls=true&tlsAllowInvalidCertificates=true"
