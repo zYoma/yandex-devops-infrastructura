@@ -38,10 +38,7 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME
               value: {{ .Values.backend.dbUser }}
             - name: SPRING_DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: spring-data-db-password
-                  key: psw
+              value: "Testusr1234"
             - name: SPRING_DATA_MONGODB_URI
               valueFrom:
                 secretKeyRef:
