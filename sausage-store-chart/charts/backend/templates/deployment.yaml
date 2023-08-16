@@ -38,7 +38,7 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME
               value: {{ .Values.backend.dbUser }}
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "Testusr1234"
+              value: {{ .Values.backend.dbPass }}
             - name: SPRING_DATA_MONGODB_URI
               valueFrom:
                 secretKeyRef:

@@ -33,10 +33,7 @@ spec:
             - name: PORT
               value: "8081"
             - name: DB
-              valueFrom:
-                secretKeyRef:
-                  name: mongo
-                  key: dns
+              value: {{ .Values.backendReport.mongoURI }}
           ports:
             - name: {{ .Values.backendReport.name }}
               containerPort: 8081

@@ -7,3 +7,4 @@ backend:
   cpuRequests: "250m"
   dbUrl: "jdbc:postgresql://rc1b-3csxm1wq40hdemwq.mdb.yandexcloud.net:6432/std-017-003"
   dbUser: "std-017-003"
+  dbPass: "Testusr1234"
