@@ -7,9 +7,9 @@ spec:
   ingressClassName: "nginx"
   tls:
     - hosts:
-        - {{ .Values.ingressUrl }}
+        - {{ .Values.frontend.ingressUrl }}
   rules:
-    - host: {{ .Values.ingressUrl }}
+    - host: {{ .Values.frontend.ingressUrl }}
       http:
         paths:
         - path: /

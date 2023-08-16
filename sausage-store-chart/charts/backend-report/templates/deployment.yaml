@@ -2,33 +2,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.name }}
+  name: {{ .Values.backendReport.name }}
   labels:
-    app: {{ .Values.name }}
+    app: {{ .Values.backendReport.name }}
     app.kubernetes.io/managed-by: helm
 spec:
-  replicas: {{ .Values.replicasCount }}
+  replicas: {{ .Values.backendReport.replicasCount }}
   revisionHistoryLimit: 15
   strategy:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: {{ .Values.name }}
+      app: {{ .Values.backendReport.name }}
   template:
     metadata:
       labels:
-        app: {{ .Values.name }}
+        app: {{ .Values.backendReport.name }}
     spec:
       containers:
         - name: backend-report
-          image: {{ .Values.image }}
+          image: {{ .Values.backendReport.image }}
           imagePullPolicy: IfNotPresent
           resources:
             limits:
-              memory: {{ .Values.memoryLimits }}
+              memory: {{ .Values.backendReport.memoryLimits }}
             requests:
-              cpu: {{ .Values.cpuRequests }}
-              memory: {{ .Values.memoryRequests }}
+              cpu: {{ .Values.backendReport.cpuRequests }}
+              memory: {{ .Values.backendReport.memoryRequests }}
           env:
             - name: PORT
               value: "8081"
@@ -38,7 +38,7 @@ spec:
                   name: mongo
                   key: dns
           ports:
-            - name: {{ .Values.name }}
+            - name: {{ .Values.backendReport.name }}
               containerPort: 8081
           livenessProbe:
             httpGet:
