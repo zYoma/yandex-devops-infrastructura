@@ -1,0 +1,5 @@
+График - рафик успешных запросов в секунду к бизнес-эндпоинтам бэкенда почему-то перестал отрисовываться в версии 2.6.4
+Запрос там следующий:
+sum by (uri) (rate(http_server_requests_seconds_count{status=~"2.*"}[5m])
+  unless
+http_server_requests_seconds_count{uri=~"/actuator/health|/actuator/prometheus"})
