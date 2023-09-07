@@ -3,3 +3,19 @@
 sum by (uri) (rate(http_server_requests_seconds_count{status=~"2.*"}[5m])
   unless
 http_server_requests_seconds_count{uri=~"/actuator/health|/actuator/prometheus"})
+
+
+Задержка обработки запросов к URL /api/orders
+histogram_quantile(0.9, rate(http_server_requests_seconds_bucket{uri="/api/orders", status=~"2.*"}[5m]))
+
+
+общее использование памяти
+sum by (area) (
+    sum(jvm_memory_used_bytes)*100/sum(jvm_memory_max_bytes)
+)
+
+Частота ошибок обращения к бизнес-эндпоинтам бэкенда в секунду
+sum by (uri) (rate(http_server_requests_seconds_count{status!~"200|201"}[5m]))
+
+
+Если какие-то запросы не верные, подскажи как исправить
