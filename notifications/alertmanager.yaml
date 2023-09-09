@@ -20,7 +20,7 @@ data:
        telegram_configs:
        - send_resolved: true
          api_url: https://api.telegram.org
-         bot_token: bot5933756043:AAE8JLL5KIzgrNBeTP5e-1bkbJy4YRoeGjs
+         bot_token: 5933756043:AAE8JLL5KIzgrNBeTP5e-1bkbJy4YRoeGjs
          chat_id: -1001763459775
          message: "Все пропало! Расходимся!\n{{ range .Alerts }}{{ .Annotations.description }}\n{{ end }}"
 kind: ConfigMap

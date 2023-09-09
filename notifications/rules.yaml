@@ -12,6 +12,9 @@ data:
             severity: critical
             project: "sausage_store"
             component: "Backend"
+          annotations:
+            summary: "Приложение недоступно {{ $labels.instance }}"
+            description: "{{ $labels.instance }} недоступно более 1 минуты (current value: {{ $value }}s)"
         - alert: 500errors
           expr: sum(http_server_requests_seconds_count{status="500"})
           for: 1m
@@ -19,6 +22,8 @@ data:
             severity: critical
             project: "sausage_store"
             component: "Backend"
+          annotations:
+            description: "Зафиксированы ошибки 500 за последнюю минуту (current value: {{ $value }}s)"
         - alert: Latency
           expr: quantile(0.95,http_server_requests_seconds_max{uri="/api/orders", method="POST"}) >=0.1
           for: 5m
